@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>AI Financial Analyst</h2>
+
+<textarea id="input"></textarea>
+<button onclick="send()">Analyze</button>
+
+<p id="output"></p>
+
+<script>
+async function send() {
+  let text = document.getElementById("input").value;
+
+  let res = await fetch("https://YOUR-RENDER-URL/sentiment", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({text})
+  });
+
+  let data = await res.json();
+  document.getElementById("output").innerText = data.result;
+}
+</script>
+
+</body>
+</html>
