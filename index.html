@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <title>AI Financial Analyst</title>
+</head>
 <body>
 
-<h2>AI Financial Analyst</h2>
+  <h2>AI Financial Analyst</h2>
+  <textarea id="input"></textarea>
+  <button onclick="send()">Analyze</button>
+  <p id="output"></p>
 
-<textarea id="input"></textarea>
-<button onclick="send()">Analyze</button>
+  <script>
+    async function send() {
+      let text = document.getElementById("input").value;
 
-<p id="output"></p>
+      let res = await fetch("https://ai-financial-analyst-project.onrender.com/analyze", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({text})
+      });
 
-<script>
-async function send() {
-  let text = document.getElementById("input").value;
-
-  https://ai-financial-analyst-project.onrender.com/sentiment
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({text})
-  });
-
-  let data = await res.json();
-  document.getElementById("output").innerText = data.result;
-}
-</script>
+      let data = await res.json();
+      document.getElementById("output").innerText = data.result;
+    }
+  </script>
 
 </body>
 </html>
